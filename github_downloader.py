@@ -3,7 +3,7 @@ import requests
 import pandas
 
 # Using the confidential data (that is stored in .gitignore and thus not uploaded to github)
-f = open("token_midterm", "r")
+f = open("token", "r")
 token = f.read()
 f.close()
 
@@ -25,10 +25,10 @@ print(result)
 
 # # Downloading something from the user:
 user_url = access_point + "/users/aarlt"
-result = json.loads(github_session.get(rate_limit_url).text)
+result = json.loads(github_session.get(user_url).text)
 # print(result)
 
-# # To read:
+# To read:
 # print(result['public_repos']) # just call the key of the json file
 
 # The person's infor:
@@ -50,9 +50,9 @@ for follower in followers:
 	df = df.append({
 	'follower_id' : follower,
 	'public_repos' : result['public_repos'],
-	'followers': result['followers']
-	'following': result['following']
-	'created_at': result['created_at']
+	'followers': result['followers'],
+	'following': result['following'],
+	'created_at': result['created_at'],
 	'updated_at': result['updated_at'],
 	}, ignore_index = True )
 
